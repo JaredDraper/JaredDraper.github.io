@@ -23,14 +23,14 @@ export class CalendarService {
 	}
 
 	public getStepsPerMonth(monthYear: string): Observable<any> {
-		 // if (this.oauthService.hasValidAccessToken() == false) {
-		 // 	this.oauthService.initImplicitFlow();
-		 // 	return;
-		 // }
-		if (window.localStorage.getItem('access_token') == null) { //for testing purposes
-			this.oauthService.initImplicitFlow();
-			return;
-		}
+		 if (this.oauthService.hasValidAccessToken() == false) {
+		 	this.oauthService.initImplicitFlow();
+		 	return;
+		 }
+		// if (window.localStorage.getItem('access_token') == null) { //for testing purposes
+		// 	this.oauthService.initImplicitFlow();
+		// 	return;
+		// }
 		let date: string[] = monthYear.split(',');
         let month: string = date[0].length === 1 ? '0' + date[0] : date[0];
         let year: string = date[1];
@@ -40,6 +40,8 @@ export class CalendarService {
 
 		let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 		headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken());
+		console.log(this.oauthService.getAccessToken());
+		console.log(urlString);
 
 		return this.http.get(urlString, {headers}).pipe(tap(
 		  info => this.log(`fetched data from fitbit`)),
