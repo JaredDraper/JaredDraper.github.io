@@ -40,8 +40,9 @@ export class CalendarService {
 
 		let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 		headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken());
-		console.log(this.oauthService.getAccessToken());
-		console.log(urlString);
+		console.log('token: ' + this.oauthService.getAccessToken());
+    console.log('authHeader: ' + this.oauthService.authorizationHeader());
+		console.log('url: ' + urlString);
 
 		return this.http.get(urlString, {headers: headers}).pipe(tap(
 		  info => this.log(`fetched data from fitbit`)),
