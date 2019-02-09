@@ -23,14 +23,14 @@ export class CalendarService {
 	}
 
 	public getStepsPerMonth(monthYear: string): Observable<any> {
-		 // if (this.oauthService.hasValidAccessToken() == false) {
-		 // 	this.oauthService.initImplicitFlow();
-		 // 	return;
-		 // }
-		if (window.localStorage.getItem('access_token') == null) { //for testing purposes
-			this.oauthService.initImplicitFlow();
-			return;
-		}
+		 if (this.oauthService.hasValidAccessToken() == false) {
+		 	this.oauthService.initImplicitFlow();
+		 	return;
+		 }
+		// if (window.localStorage.getItem('access_token') == null) { //for testing purposes
+		// 	this.oauthService.initImplicitFlow();
+		// 	return;
+		// }
 		let date: string[] = monthYear.split(',');
         let month: string = date[0].length === 1 ? '0' + date[0] : date[0];
         let year: string = date[1];
