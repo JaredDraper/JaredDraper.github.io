@@ -43,7 +43,7 @@ export class CalendarService {
 		console.log(this.oauthService.getAccessToken());
 		console.log(urlString);
 
-		return this.http.get(urlString, {headers}).pipe(tap(
+		return this.http.get(urlString, {headers: headers}).pipe(tap(
 		  info => this.log(`fetched data from fitbit`)),
       catchError(error => this.handleError(error)));
 	}
