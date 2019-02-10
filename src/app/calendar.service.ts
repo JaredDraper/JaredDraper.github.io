@@ -39,7 +39,7 @@ export class CalendarService {
                     daysInMonth + '.json';
 
 		let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-		headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken());
+		headers.set('Authorization', this.oauthService.authorizationHeader());
 		console.log('token: ' + this.oauthService.getAccessToken());
     console.log('authHeader: ' + this.oauthService.authorizationHeader());
 		console.log('url: ' + urlString);
@@ -60,7 +60,7 @@ export class CalendarService {
 
   	public updateSteps(updatedSteps: string, date: string, calendar: any) {
 		let headers = new HttpHeaders({ 'Accept-Language': 'en-US,en;q=0.5' });
-		headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken());
+		headers.set('Authorization', this.oauthService.authorizationHeader());
 		let params = new HttpParams();
 		params.set('activityId', '90013');		
 		params.set('startTime', this.getRandomTime());
