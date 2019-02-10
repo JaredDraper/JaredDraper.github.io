@@ -6,7 +6,7 @@ import { Steps } from './steps';
 selector: 'days',
 styleUrls: ['./calendar.component.css'],
 template: `
-<h2>Edit your steps for the Month (One week at a time works best)</h2>
+<h2>Edit your steps for the Month</h2>
 <br>
 <div class='month'> 
   <ul>
