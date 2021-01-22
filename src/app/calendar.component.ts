@@ -8,7 +8,7 @@ styleUrls: ['./calendar.component.css'],
 template: `
 <h2>Edit your steps for the Month</h2>
 <br>
-<div class='month'> 
+<div class='month'>
   <ul>
     <li class='prev' (click)='getPreviousMonth()'>&#10094;</li>
     <li class='next' (click)='getNextMonth()'>&#10095;</li>
@@ -26,10 +26,10 @@ template: `
   <li>We</li>
   <li>Th</li>
   <li>Fr</li>
-  <li>Sa</li> 
+  <li>Sa</li>
 </ul>
 
-<ul class='days'> 
+<ul class='days'>
   <li *ngFor='let notDay of notDays'>
   <li *ngFor='let day of days'><font size='3'>{{ day }} </font>
   <input type="text" size="5" [style.color]="getStyle(oldStepsList[day-1].value)" *ngIf="oldStepsList" class="error" id="{{ day }}" [(ngModel)]="oldStepsList[day-1].value" disabled>
@@ -40,7 +40,6 @@ template: `
 <h2 [textContent]="'Days completed: ' + totalDays"></h2>
 <button (click)='submitSteps()'>Submit</button>
 <button (click)='logout()'>Logout</button>
-<a href="https://www.paypal.me/JaredDraper" align="right">Donate</a>
 `
 })
 
@@ -68,7 +67,7 @@ export class CalendarComponent {
 		this.calendarService = calendarService;
 		this.populateScreen();
 	}
-		
+
 
 	private getMonthName() {
 		return this.monthNames[this.calendarDate.getMonth()];
@@ -123,7 +122,7 @@ public updateTotal() {
   	return true;
 }
 
-public submitSteps() {	
+public submitSteps() {
 	for (let i = this.stepsList.length - 1; i >= 0; i--) {
 		if (this.stepsList[i].value !== '' && Number(this.stepsList[i].value) > 0) {
 			let dayInt: number = i + 1;
@@ -144,7 +143,7 @@ public helperFunction(){
 			let day: string = data[0];
 			let value: string = data[1];
 			this.dayList.shift();
-			
+
 		this.calendarService.updateSteps(value, this.calendarDate.getFullYear().toString() + '-' + monthStr + '-' + day, this);
 	}
 	else{
@@ -167,6 +166,6 @@ public helperFunction(){
 		this.calendarService.getStepsPerMonth((this.calendarDate.getMonth() + 1).toString() + ',' + this.calendarDate.getFullYear().toString() + ',' + this.days.length)
                 .subscribe(oldStepsList => this.oldStepsList = oldStepsList, error => this.errorMessage = <any>error, () => this.updateTotal());
 	}
-	
+
 
 }
